@@ -46,7 +46,7 @@ function getPlayerChoice() {
 function updateScoreboard(scoreBoard, result) {
     if (result.includes('Won')){
         scoreBoard.player++;
-    }else if(result.includes('Lose')){
+    } else if (result.includes('Lose')){
         scoreBoard.computer++;
     }
 }
@@ -54,9 +54,9 @@ function updateScoreboard(scoreBoard, result) {
 function displayGameResult(scoreboard) {
     if (scoreboard.player > scoreboard.computer){
         console.log('** You Won! Game Over **');
-    }else if (scoreboard.player > scoreboard.computer){
+    } else if (scoreboard.player > scoreboard.computer){
         console.log('** You Lose! Game Over **');
-    }else{
+    } else {
         console.log('** Draw! Game Over **')
     }
 }
