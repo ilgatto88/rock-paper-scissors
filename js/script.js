@@ -67,7 +67,7 @@ function displayStandings(scoreboard) {
 
 function game(){
     let scoreBoard = initializeScoreBoard();
-    for (let i = 0; i < 3; i++){
+    for (let i = 0; i < 5; i++){
         const computerSelection = getComputerChoice();
         const playerSelection = getPlayerChoice();
         const result = playRound(playerSelection, computerSelection);
