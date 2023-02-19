@@ -1,6 +1,14 @@
 let scoreBoard = initializeScoreBoard();
 
-document.querySelectorAll('button').forEach(item => {
+let allButtons = document.querySelectorAll('button');
+let currentResultField = document.querySelector(".current-result");
+let finalResultField = document.querySelector('.final-result');
+let scoreBoardField = document.querySelector('.scoreboard');
+let rockButton = document.querySelector("#rock");
+let paperButton = document.querySelector("#paper");
+let scissorsButton = document.querySelector("#scissors");
+
+allButtons.forEach(item => {
     item.addEventListener('click', playRound)
 });
 
@@ -11,7 +19,6 @@ function initializeScoreBoard() {
         computer: 0
     }
 }
-
 
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
@@ -42,7 +49,7 @@ function playRound() {
         result = `You lose this round! ${capitalizeFirstLetter(computer)} beats ${capitalizeFirstLetter(player)}`;
     }
 
-    document.querySelector(".current-result").innerHTML = result;
+    currentResultField.innerHTML = result;
     updateScoreboard(scoreBoard, result);
     displayStandings(scoreBoard);
 
@@ -65,21 +72,29 @@ function updateScoreboard(scoreBoard, result) {
 
 function displayGameResult(scoreboard) {
     if (scoreboard.player > scoreboard.computer) {
-        document.querySelector('.final-result').innerHTML = '** You Won! Game Over **';
+        finalResultField.innerHTML = '** You Won! Game Over **';
     } else {
-        document.querySelector('.final-result').innerHTML = '** You Lose! Game Over **';
+        finalResultField.innerHTML = '** You Lose! Game Over **';
     }
+    disableGameButtons();
+}
+
+function disableGameButtons() {
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    scissorsButton.disabled = true;
 }
 
 function addRestartButton() {
 
     let restartButton = document.createElement('button');
+    restartButton.setAttribute("id", "restartButton");
     restartButton.innerHTML = 'Restart game';
-    document.querySelector('.final-result').append(restartButton);
+    finalResultField.append(restartButton);
     restartButton.addEventListener('click', () => { window.location.reload() });
 }
 
 
 function displayStandings(scoreboard) {
-    document.querySelector('.scoreboard').innerHTML = `Current standings - Player: ${scoreboard.player}, Computer: ${scoreboard.computer}`;
+    scoreBoardField.innerHTML = `Current standings - Player: ${scoreboard.player}, Computer: ${scoreboard.computer}`;
 }
